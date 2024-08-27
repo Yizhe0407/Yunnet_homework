@@ -1,0 +1,22 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "start": "npm run dev"
+  },
+  "dependencies": {
+    "axios": "^1.7.4",
+    "cookies": "^0.9.1",
+    "js-cookie": "^3.0.5",
+    "nuxt": "^3.12.4"
+  },
+  "devDependencies": {
+  "@nuxtjs/tailwindcss": "^6.12.1"
+  }
+}

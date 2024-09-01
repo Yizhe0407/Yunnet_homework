@@ -3,7 +3,7 @@
     <div :class="blurClass" class="flex justify-start xl:justify-center items-center h-screen bg-white/30 transition-all duration-500">
       <div class="flex justify-center items-start flex-col p-6">
         <h1 class="text-xl text-violet-600 font-bold">🥃  {{ isAuthenticated ? username : 'Please Login or Signup' }}</h1>
-        <h1 class="text-6xl font-bold mb-8">Nuxt3 + Fastapi <br> Login Template</h1>
+        <h1 class="text-6xl font-bold mb-8">Nuxt3 + Express <br> Login Template</h1>
         <p class="text-lg mb-4 w-1/2 min-w-96">This is a login example template built with Nuxt3 and FastAPI. You can use this template as a starting point to build your own application.</p>
         <p v-if="!isAuthenticated" class="text-lg text-violet-600 font-bold mb-4">Click the buttons below to log in or sign up for a new account.</p>
         <div v-if="!isAuthenticated" class="flex flex-row">

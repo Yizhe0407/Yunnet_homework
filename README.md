@@ -12,12 +12,12 @@ This project is a simple example of a registration and login system. The front-e
 ## 📄Features
 1. **Homepage (not login)**
 <div align="center">
-    <img src="https://imgur.com/CXUcPna.png" width="80%">
+    <img src="https://imgur.com/i1oDaIz.png" width="80%">
 </div>
 
 2. **Homepage (login)**
 <div align="center">
-    <img src="https://i.imgur.com/pVS0RSp.png" width="80%">
+    <img src="https://i.imgur.com/I7Sbukx.png" width="80%">
 </div>
 
 3. **User Registration**

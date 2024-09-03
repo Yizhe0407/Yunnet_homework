@@ -34,7 +34,6 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
-import Cookies from 'js-cookie'
 
 const handleKeydown = (event) => {
     if (event.code === 'Enter') {

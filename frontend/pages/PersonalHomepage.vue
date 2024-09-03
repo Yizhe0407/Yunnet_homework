@@ -26,9 +26,6 @@
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import ProfileCard from '@/components/ProfileCard.vue'
-import AboutMe from '@/components/AboutMe.vue'
-import Skills from '@/components/Skills.vue'
-import Projects from '@/components/Projects.vue'
 
 const name = ref('')
 const email = ref('')

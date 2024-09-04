@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import db from '../config/db.js'; // 確保這個路徑正確
 const key = process.env.JWT_SECRET;
 

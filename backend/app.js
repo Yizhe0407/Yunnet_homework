@@ -4,7 +4,6 @@ import authRoutes from './routes/authRoutes.js';
 import profileRoutes from './routes/profileRoutes.js';
 
 const app = express();
-const port = 3000;
 
 app.use(cors()); // 啟用 CORS
 app.use(express.json()); // Middleware to parse JSON requests
@@ -13,6 +12,6 @@ app.use(express.json()); // Middleware to parse JSON requests
 app.use('/api', authRoutes);
 app.use('/api', profileRoutes);
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(process.env.API_PORT, () => {
+  console.log(`Server is running on port ${process.env["API_PORT"]}`);
 });

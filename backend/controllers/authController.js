@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import db from '../config/db.js'; // 確保這個路徑正確
+import db from '../config/db.js';
 const key = process.env.JWT_SECRET;
 
 export const signup = async (req, res) => {

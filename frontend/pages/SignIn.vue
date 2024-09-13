@@ -68,8 +68,8 @@ const submit = async () => {
 
     try {
         errorMessage.value = '';
-        loading.value = true; // 在加载时禁用按钮
-        const data = await $fetch('http://localhost:3000/api/login', { // 更新端点
+        loading.value = true;
+        const data = await $fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

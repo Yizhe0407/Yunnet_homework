@@ -35,7 +35,7 @@ onMounted(async () => {
     const response = await $fetch('http://localhost:3000/api/profile', {
       method: 'GET',
       headers: {
-        'Authorization': token, // Standard Bearer token format
+        'Authorization': token,
         'Content-Type': 'application/json'
       }
     });

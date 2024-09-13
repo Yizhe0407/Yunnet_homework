@@ -1,6 +1,6 @@
 // routes/authRoutes.js
 import express from 'express';
-import { signup, login } from '../controllers/authController.js'; // 確保這個路徑正確
+import { signup, login } from '../controllers/authController.js';
 
 const router = express.Router();
 

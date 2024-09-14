@@ -32,7 +32,7 @@ onMounted(async () => {
   const token = localStorage.getItem('token');
   if (token) {
     isAuthenticated.value = true;
-    const response = await $fetch('http://localhost:3000/api/profile', {
+    const response = await $fetch('/api/profile', {
       method: 'GET',
       headers: {
         'Authorization': token,

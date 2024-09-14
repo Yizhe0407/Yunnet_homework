@@ -1,6 +1,5 @@
 <template>
-
-    <body class="font-mono">
+    <div class="font-mono">
         <div class="flex justify-center items-center h-screen">
             <div class="absolute top-0 left-0 p-8">
                 <BackToHome />
@@ -23,22 +22,33 @@
                     :disabled="loading">
                     Sign in
                 </button>
-                <button class="mb-6 text-xs text-stone-300">Forgot your password?</button>
+                <button class="mb-6 text-xs text-stone-300" :class="{ 'opacity-50': loading }"
+                    :disabled="loading">Forgot your password?</button>
                 <h1 class="mb-4 text-base">Don’t have account?</h1>
                 <NuxtLink to="/SignUp" class="text-center bg-white p-2 w-64 border rounded-lg shadow hover:shadow-lg">
-                    Create new account</NuxtLink>
-
+                    Create new account
+                </NuxtLink>
             </div>
         </div>
-    </body>
+    </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router';
+
+const user = ref({
+    email: '',
+    password: ''
+});
+
+const errorMessage = ref('');
+const loading = ref(false);
+const router = useRouter();
 
 const handleKeydown = (event) => {
-    if (event.code === 'Enter') {
-        submit()
+    if (event.code === 'Enter' && !loading.value && user.value.email && user.value.password) {
+        submit();
     }
 };
 
@@ -50,16 +60,6 @@ onBeforeUnmount(() => {
     window.removeEventListener('keydown', handleKeydown, false);
 });
 
-const user = ref({
-    email: '',
-    password: ''
-})
-
-const errorMessage = ref('')
-const loading = ref(false)
-const router = useRouter()
-
-
 const submit = async () => {
     if (!user.value.email || !user.value.password) {
         errorMessage.value = 'Fields required';
@@ -69,21 +69,22 @@ const submit = async () => {
     try {
         errorMessage.value = '';
         loading.value = true;
-        const data = await $fetch('http://localhost:3000/api/login', {
+
+        const response = await $fetch('/api/login', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: { email: user.value.email, password: user.value.password }
+            body: {
+                email: user.value.email,
+                password: user.value.password
+            }
         });
-        if (data.token) {
-            localStorage.setItem('token', data.token);
-            router.push({
-                path: '/PersonalHomepage'
-            });
+
+        if (response.token) {
+            localStorage.setItem('token', response.token);
+            router.push({ path: '/PersonalHomepage' });
         } else {
-            errorMessage.value = data.error || 'Login failed';
+            errorMessage.value = response.error || 'Login failed';
         }
+
     } catch (error) {
         console.error('Error:', error);
         errorMessage.value = 'Login failed';
@@ -93,6 +94,6 @@ const submit = async () => {
 };
 
 const clearErrorMessage = () => {
-    errorMessage.value = ''
-}
+    errorMessage.value = '';
+};
 </script>

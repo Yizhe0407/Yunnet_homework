@@ -1,2 +1,2 @@
 *.yml
-Dockerfile
+.env

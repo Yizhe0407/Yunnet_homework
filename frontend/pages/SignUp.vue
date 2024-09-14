@@ -1,6 +1,5 @@
 <template>
-
-    <body class="font-mono">
+    <div class="font-mono">
         <div class="flex justify-center items-center h-screen">
             <div class="absolute top-0 left-0 p-8">
                 <BackToHome />
@@ -22,22 +21,22 @@
                     class="mb-6 p-2 w-64 border rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:border-blue-500" />
                 <button @click="submit"
                     class="mb-4 w-64 p-2 bg-blue-400 hover:bg-blue-500 text-white rounded-lg shadow-md"
-                    :disabled="loading">
+                    :disabled="loading" :class="{ 'opacity-50': loading }">
                     Sign up
                 </button>
                 <NuxtLink to="/SignIn" class="text-center bg-white p-2 w-64 border rounded-lg shadow hover:shadow-lg">
                     Already have an account?</NuxtLink>
             </div>
         </div>
-    </body>
+    </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const handleKeydown = (event) => {
-    if (event.code === 'Enter') {
-        submit()
+    if (event.code === 'Enter' && !loading.value && user.value.username && user.value.email && user.value.password) {
+        submit();
     }
 };
 
@@ -69,24 +68,22 @@ const submit = async () => {
     try {
         errorMessage.value = '';
         loading.value = true;
-        const data = await $fetch('http://localhost:3000/api/signup', {
+
+        const response = await $fetch('/api/signup', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
             body: {
                 username: user.value.username,
                 email: user.value.email,
                 password: user.value.password
             }
         });
-        if (data.message) {
+        if (response.message) {
             router.push('/SignIn');
         } else {
-            if (data.error === 'User already exists') {
+            if (response.error === 'User already exists') {
                 errorMessage.value = 'User already exists';
             } else {
-                errorMessage.value = data.error || 'Registration failed';
+                errorMessage.value = response.error || 'Registration failed';
             }
         }
     } catch (error) {

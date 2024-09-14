@@ -1,8 +1,18 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/image'],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxt/image",
+    "@nuxt-alt/proxy"
+  ],
+  proxy: {
+    proxies: {
+      "/api/": {
+        target: "http://127.0.0.1:3000",
+        changeOrigin: true, // 允許cors跨域
+      },
+    },
+  },
   devServer: {
     port: 8080,
   },

@@ -12,4 +12,4 @@ RUN npm run build
 
 EXPOSE 8080
 
-ENTRYPOINT ["node", ".output/server/index.mjs"]
+ENTRYPOINT ["npm", "start"]
